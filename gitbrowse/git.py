@@ -208,10 +208,10 @@ class GitFileHistory(object):
             # context (and is not always present)
 
             headers = header_line.strip('@ \n').split(' ')
-            headers = map(lambda x: x.strip('+-').split(','), headers)
+            headers = list(map(lambda x: x.strip('+-').split(','), headers))
 
-            start_range = map(int, headers[0])
-            finish_range = map(int, headers[1])
+            start_range = list(map(int, headers[0]))
+            finish_range = list(map(int, headers[1]))
 
             while start_ln < start_range[0] - 1 and \
                   finish_ln < finish_range[0] - 1:
@@ -237,7 +237,7 @@ class GitFileHistory(object):
                             line_delta -= 1
 
                         group_size += 1
-                        line = line_iter.next().rstrip()
+                        line = next(line_iter).rstrip()
 
                     if group_size == 0:
                         # Two '~' lines next to each other means a blank
