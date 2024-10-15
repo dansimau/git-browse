@@ -1,4 +1,6 @@
 #!/bin/bash
 
-cd $( dirname $BASH_SOURCE[0] )
+set -e
+
+cd "$( dirname "${BASH_SOURCE[0]}" )"
 rm -rf repo
